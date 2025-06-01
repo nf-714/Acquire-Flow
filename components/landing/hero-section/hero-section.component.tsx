@@ -1,140 +1,76 @@
-import { cn } from "@/lib/utils";
-import * as motion from "motion/react-client";
-import * as React from "react";
+"use client";
 
-interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string;
-  subtitle?: {
-    regular: string;
-    gradient: string;
-  };
-  description?: string;
-  ctaText?: string;
-  ctaHref?: string;
-  bottomImage?: {
-    light: string;
-    dark: string;
-  };
-  gridOptions?: {
-    angle?: number;
-    cellSize?: number;
-    opacity?: number;
-    lightLineColor?: string;
-    darkLineColor?: string;
-  };
-  backgroundImage?: string;
-  overlayOpacity?: number;
-}
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
-  (
-    {
-      className,
-      title = "Build products for everyone",
-      subtitle = {
-        regular: "Designing your projects faster with ",
-        gradient: "the largest figma UI kit.",
-      },
-      description = "Sed ut perspiciatis unde omnis iste natus voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.",
-      ctaText = "Browse courses",
-      ctaHref = "#",
-
-      overlayOpacity = 0.3,
-      ...props
-    },
-    ref
-  ) => {
-    return (
+export default function HeroSection() {
+  return (
+    <section
+      className="relative w-full overflow-hidden bg-zinc-200 dark:bg-[#0a0613] pb-10 pt-32 font-light text-white antialiased md:pb-16 md:pt-20"
+      style={{
+        background: "linear-gradient(135deg, #09090B 0%, #18181B 100%)",
+        height: "100vh",
+      }}
+    >
       <div
-        className={cn("relative", className)}
-        ref={ref}
-        {...props}
-        style={
-          {
-            /*
-          backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        */
-          }
-        }
-      >
-        {/* Overlay for light/dark mode */}
-        <div
-          className={cn("absolute inset-0 z-[1]", "")}
-          style={{ opacity: overlayOpacity }}
-        />
+        className="absolute left-0 top-0 h-1/2 w-1/2 -scale-x-100"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 30%, rgba(155, 135, 245, 0.15) 0%, rgba(13, 10, 25, 0) 60%)",
+        }}
+      />
 
-        <section className="relative max-w-full mx-auto z-[3]">
-          <div className="max-w-screen-xl  h-[100vh]  z-10 mx-auto px-4 py-28 gap-12 md:px-8">
-            <div className="space-y-5 max-w-3xl leading-0 lg:leading-5 mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-gray-600 dark:text-gray-400  group font-geist mx-auto px-5 py-2 bg-gradient-to-tr from-zinc-300/20 via-gray-400/20 to-transparent dark:from-zinc-300/5 dark:via-gray-400/5 border-[5px] border-gray-100 dark:border-white/5 rounded-3xl w-fit"
-              >
-                <p className="text-sm text-gray-700 flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-orange-900 animate-ping" />
-                  {title}
-                </p>
-              </motion.div>
+      <div className="container flex flex-col items-center justify-center h-full relative z-10 mx-auto max-w-2xl px-4 text-center md:max-w-4xl md:px-6 lg:max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <span className=" mb-6 inline-block rounded-full border border-[#9b87f5]/30 px-3 py-1 text-xs text-zinc-200">
+            Introducing AcquireFlow - Smarter Hiring. Smoother Job Hunting.
+          </span>
+          <h1 className="mx-auto mb-6 max-w-4xl text-4xl md:text-5xl lg:text-7xl">
+            Hire Fast. Land Jobs Easy.
+            <p className="font-georgia italic ">
+              All in <spam className="text-green-500"> One Platform.</spam>{" "}
+            </p>
+          </h1>
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-white/60 md:text-xl">
+            Everything you need to post jobs, track applicants, apply fast, and
+            stay updated.
+          </p>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-6xl tracking-tighter font-geist bg-clip-text text-transparent mx-auto md:text-7xl bg-[linear-gradient(180deg,_#000_0%,_rgba(0,_0,_0,_0.75)_100%)] dark:bg-[linear-gradient(180deg,_#FFF_0%,_rgba(255,_255,_255,_0.00)_202.08%)]"
+          <div className="mb-10 sm:mb-0 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/docs/get-started"
+              className="neumorphic-button hover:shadow-[0_0_20px_rgba(155, 135, 245, 0.5)] relative w-full overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-white/10 to-white/5 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:border-[#9b87f5]/30 sm:w-auto"
+            >
+              Get Started
+            </Link>
+            <a
+              href="#how-it-works"
+              className="flex w-full items-center justify-center gap-2 text-white/70 transition-colors hover:text-white sm:w-auto"
+            >
+              <span>Learn how it works</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <div className="text-transparent bg-clip-text font-normal font-sans pb-2 text-6xl sm:text-5xl md:text-6xl lg:text-8xl text-unwrap">
-                  <p>
-                    Take Control of Your Hiring. <br />
-                    <span className="text-green-600">
-                      Simple. Smart. Results.
-                    </span>{" "}
-                  </p>
-                  <p className="text-4xl font-light">
-                    Hire Top Talent 2X Faster.
-                  </p>
-                </div>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300"
-              >
-                Streamline your hiring from start to finish. Find, track, and
-                hire the best people .
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                viewport={{ once: false }}
-                className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0"
-              >
-                <span className="relative inline-block overflow-hidden rounded-full p-[1.5px]">
-                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                  <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-gray-950 text-xs font-medium backdrop-blur-3xl">
-                    <a
-                      href={ctaHref}
-                      className="inline-flex rounded-full text-center group items-center w-full justify-center bg-gradient-to-tr from-zinc-300/20 via-purple-400/30 to-transparent dark:from-zinc-300/5 dark:via-purple-400/20 text-gray-900 dark:text-white border-input border-[1px] hover:bg-gradient-to-tr hover:from-zinc-300/30 hover:via-purple-400/40 hover:to-transparent dark:hover:from-zinc-300/10 dark:hover:via-purple-400/30 transition-all sm:w-auto py-4 px-10"
-                    >
-                      {ctaText}
-                    </a>
-                  </div>
-                </span>
-              </motion.div>
-            </div>
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </a>
           </div>
-        </section>
-        <div className="absolute inset-0 -z-10 h-full  w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#FF5A00_100%)]"></div>
+        </motion.div>
       </div>
-    );
-  }
-);
-HeroSection.displayName = "HeroSection";
-
-export { HeroSection };
+      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] "></div>
+      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(125%_125%_at_50%_10%,rgba(255,255,255,0)_40%,rgba(22,163,74,1)_100%)]"></div>
+    </section>
+  );
+}

@@ -10,5 +10,9 @@ export function Navigation() {
     { name: "Resume", url: "#", icon: FileText },
   ];
 
-  return <NavBar items={navItems} />;
+  return (
+    <>
+      <NavBar items={navItems} />
+    </>
+  );
 }

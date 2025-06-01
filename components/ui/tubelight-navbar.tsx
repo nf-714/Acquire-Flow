@@ -3,8 +3,10 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "./button";
 
 interface NavItem {
   name: string;
@@ -36,10 +38,12 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "flex justify-between items-center gap-9 w-full px-8 fixed sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
         className
       )}
     >
+      <Image src="/icons/icon.svg" alt="logo" width={20} height={20} />
+
       <div className="flex items-center gap-3 bg-background/5  backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon;
@@ -52,7 +56,7 @@ export function NavBar({ items, className }: NavBarProps) {
               onClick={() => setActiveTab(item.name)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
-                "text-foreground/80 hover:text-primary",
+                "text-zinc-300 hover:text-zinc-500",
                 isActive && "bg-muted text-primary"
               )}
             >
@@ -81,6 +85,20 @@ export function NavBar({ items, className }: NavBarProps) {
             </Link>
           );
         })}
+      </div>
+      <div className="flex items-center gap-4">
+        <Button
+          variant="outline"
+          className="bg-transparent border-0 text-green-300 hover:bg-green-500 hover:border-green-700"
+        >
+          Log in
+        </Button>
+        <Button
+          variant="outline"
+          className="bg-zinc-800 text-zinc-300 rounded-3xl border-2 border-zinc-700"
+        >
+          Start Your Job Hunting
+        </Button>
       </div>
     </div>
   );
